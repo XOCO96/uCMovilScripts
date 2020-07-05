@@ -12,7 +12,7 @@ bool tiempo = true;
 
 //----------------------------
 char recibido = 0;
-
+char actividad = 0;
 //----------------------------
 float voltaje = 0;
 float q = 0.004887;
@@ -62,14 +62,33 @@ void loop()
         recibido = Serial.read(); 
         if (recibido != '\n')
         {
-            Serial.println(recibido);
-        }
-        
+            actividad = recibido;
+            //Serial.println(recibido);
+        }  
     }
+
+    switch (actividad)
+    {
+    case 'R':
+        reloj();
+        break;
+    case 'A':
+        ESAnalog();
+        break;
+    case 'D':
+        ESDigital();
+        break;
+    case 'P':
+        IntPuerto();
+        break;
     
-    
-    Serial.println("Esperando instruccion");
-    delay(1000);
+    default:
+        Serial.print("Esperando instruccion:   ");
+        //Serial.println(actividad);
+        delay(1000);
+        break;
+    }
+
     
 }
 
@@ -142,12 +161,12 @@ void ESAnalog()
     pwm = ValorSensor/prop;
     if (ctimp==10)
     {
-        Serial.print(pwm);
+        Serial.println(pwm);
         ctimp = 0;
     }
     else
     {
-        Serial.print(pwm);
+        Serial.println(pwm);
         ctimp++;
     }
     
