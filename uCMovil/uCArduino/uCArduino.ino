@@ -151,22 +151,22 @@ void ESAnalog()
     int ValorSensor = analogRead(A0);
 
 
-    Serial.print(ValorSensor);
+    Serial.println(ValorSensor);
     voltaje = ValorSensor*q;
-    Serial.print("   ") ;
-    Serial.print(voltaje);
-    Serial.print("   ");
+    //Serial.print("   ") ;
+    //Serial.print(voltaje);
+    //Serial.print("   ");
 
 
     pwm = ValorSensor/prop;
     if (ctimp==10)
     {
-        Serial.println(pwm);
+        //Serial.println(pwm);
         ctimp = 0;
     }
     else
     {
-        Serial.println(pwm);
+        //Serial.println(pwm);
         ctimp++;
     }
     
