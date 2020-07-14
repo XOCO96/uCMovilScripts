@@ -34,6 +34,8 @@ const int BOTON_INT = 0;
 int cuenta = 0;
 boolean estado = true;
 
+boolean analogAux = false;
+
 
 //////////////////////   Configuracion   ///////////////////////
 void setup()
@@ -63,6 +65,7 @@ void loop()
         if (recibido != '\n')
         {
             actividad = recibido;
+            analogAux=true;
             //Serial.println(recibido);
         }  
     }
@@ -148,28 +151,35 @@ void reloj()
 
 void ESAnalog()
 {
+    if (analogAux)
+    {
+        ctimp=0;
+        analogAux = false;
+    }
+    
     int ValorSensor = analogRead(A0);
 
 
-    Serial.println(ValorSensor);
-    voltaje = ValorSensor*q;
+    //Serial.println(ValorSensor);
+    //voltaje = ValorSensor*q;
     //Serial.print("   ") ;
     //Serial.print(voltaje);
     //Serial.print("   ");
 
 
     pwm = ValorSensor/prop;
-    if (ctimp==10)
+    if (ctimp <10)
     {
         //Serial.println(pwm);
-        ctimp = 0;
+        Serial.println(ValorSensor);
+        //ctimp = 0;
     }
-    else
+    /*else
     {
         //Serial.println(pwm);
         ctimp++;
-    }
-    
+    }*/
+    ctimp++;
 
     analogWrite(Led,pwm);
     delay(1000);
