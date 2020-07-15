@@ -86,7 +86,7 @@ void loop()
         break;
     
     default:
-        Serial.print("Esperando instruccion:   ");
+        //Serial.print("Esperando instruccion:   ");
         //Serial.println(actividad);
         delay(1000);
         break;
