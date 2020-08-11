@@ -1,5 +1,7 @@
 /*  Script general para el uC   */   
 
+// Serial para conexion directa
+// Serial 2 para uso del convertidor TTL
 
 #include <TimerOne.h>
 
@@ -49,7 +51,8 @@ void setup()
     pinMode(LED,OUTPUT);
     pinMode(LED2,OUTPUT);
     pinMode(LED3,OUTPUT);
-    pinMode(BUTTON,INPUT_PULLUP);
+    //pinMode(BUTTON,INPUT_PULLUP);
+    pinMode(BUTTON,INPUT);
     //--------------------------------
     pinMode(Led, OUTPUT);
     attachInterrupt(BOTON_INT, swap, RISING);
@@ -157,7 +160,7 @@ void ESAnalog()
         analogAux = false;
     }
     
-    int ValorSensor = analogRead(A0);
+    int ValorSensor = analogRead(A15);
 
 
     //Serial.println(ValorSensor);
@@ -168,7 +171,7 @@ void ESAnalog()
 
 
     pwm = ValorSensor/prop;
-    if (ctimp <50)
+    if (ctimp <100)
     {
         //Serial.println(pwm);
         Serial.println(ValorSensor);
