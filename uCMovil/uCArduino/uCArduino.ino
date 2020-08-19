@@ -171,7 +171,7 @@ void ESAnalog()
 
 
     pwm = ValorSensor/prop;
-    if (ctimp <100)
+    if (ctimp <10)
     {
         //Serial.println(pwm);
         Serial.println(ValorSensor);
